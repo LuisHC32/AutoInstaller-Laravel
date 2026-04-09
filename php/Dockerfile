@@ -17,7 +17,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copia el script init.sh
 COPY php/init.sh /usr/local/bin/init.sh
-RUN chmod +x /usr/local/bin/init.sh
+RUN sed -i 's/\r$//' /usr/local/bin/init.sh && \
+    chmod +x /usr/local/bin/init.sh
 
 # Establece el directorio de trabajo
 WORKDIR /var/www/html
