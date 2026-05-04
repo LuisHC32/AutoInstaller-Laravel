@@ -7,11 +7,24 @@ Se utiliza Nginx y su respectivo default.conf para renderizar la aplicacion web.
 
 1. Configura tu .env.
 2. ```docker compose up``` Para crear el container con los servicios requeridos. 
-2.1. Si se desea escalar el servicio de php, se debe modificar el docker-compose.yml y agregar ```deploy: replicas: 3``` y ejecutar ```docker compose up --scale php=3```
 3. Espera y verifica que se haya creado el proyecto.
 4. ```docker compose exec php php artisan migrate``` Para migrar la base de datos. (Si es necesario).
-=======
-2. ```docker compose up``` Para crear el container con los servicios requeridos.
-3. Espera y verifica que se haya creado el proyecto.
-4. ```docker compose exec php php artisan migrate``` Para migrar la base de datos. (Si es necesario)
->>>>>>> 2f5ea2806e89f7595e11ea8a8f15fb66b5707a96
+
+### Extras:
+* Replicas
+-Si se desea escalar el servicio de php, se debe modificar el docker-compose.yml y agregar ```replicas: x``` y ejecutar ```docker compose up --scale php=X```
+* Resources:
+  Limits/Reservations: Minimo y maximo de recursos en cpu (cpus) y RAM (memory)
+
+Ejemplo:
+```
+    deploy:
+      replicas: 3 
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+```
