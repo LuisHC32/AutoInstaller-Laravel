@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.4-fpm-alpine
 
 # Instala las dependencias del sistema
 RUN apk add --no-cache \
@@ -7,7 +7,9 @@ RUN apk add --no-cache \
     libxml2-dev \
     zip \
     unzip \
-    oniguruma-dev
+    oniguruma-dev \
+    nodejs \
+    npm
 
 # Instala las extensiones de PHP
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
